@@ -19,9 +19,23 @@
             <label for="photoURL">Image URL:</label>
             <input type="text" id="photoURL" name="photoURLName" required>
             
-            <button type="submit">Add Photo</button>
+            <button id="addPhotoButton" type="submit">Add Photo</button>
         </form>
     </div>
+
+<div id="photoContainer">
+    <img src="DOM316Images/Adrian1.jpg" alt="Photo 1" style="max-width: 50%; height: auto;">
+    <img src="DOM316Images/Adrian2.jpg" alt="Photo 2" style="max-width: 50%; height: auto;">
+    <img src="DOM316Images/Adrian3.jpg" alt="Photo 3" style="max-width: 50%; height: auto;">
+</div>
+
+<template id="photoTemplate">
+    <div class="photo">
+        <img src="" alt="Photo">
+        <P class="caption"></P>
+    </div>
+</template>
+
 </section>
 </body>
 </html>
