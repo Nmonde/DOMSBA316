@@ -1,0 +1,13 @@
+*/ {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#thankYouMessage {
+    display: flex;
+    font-size: 14px;
+    color:palevioletred;
+    margin-top: 10px;
+}
