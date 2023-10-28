@@ -1,5 +1,4 @@
 const photoContainerQuery = document.querySelector("#photoContainer");
-const inputElements = document.querySelectorAll("input");
 const photos = photoContainer.querySelectorAll("img");
 
 
@@ -21,19 +20,29 @@ photos.forEach(function(photos) {
 
 fadeInImages(photos, 1000);
 
-const imageSources = ["DOM316Images/Adrian1.jpg, DOM316Images/Adrian2.jpg, DOM316Images/Adrian3.jpg"];
-const photoTemplate = document.getElementById("photoTemplate");
-imageSources.array.forEach(function(imageSources) {
-const photoFragment = document.importNode(photoTemplate.content, true);
-const newPhotoItem = photoFragment.querySelector(".photo");
-newPhotoItem.querySelector("img").src = "DOM316Images/Adrian1.jpg; DOM316Images/Adrian2.jpg; DOM316Images/Adrian3.jpg";
-newPhotoItem.querySelector(".caption").textContent = "Adrian the new Mad Scientist!";
+const photoContainer = document.querySelector("photoContainer");
+const delayBetweenImages = 1000;
+const imagesSources = ["DOM316Images/Adrian1.jpg, DOM316Images/Adrian2.jpg, DOM316Images/Adrian3.jpg"];
+let index= 0;
 
-const photoContainerQuery.appendChild(newPhotoItem);
+function imagesFadeInandOut() {
+    if (index < imagesSources.length) {
+        const newPhotoItem = document.createElement("img");
+        newPhotoItem.src = imagesSources[index];
+        newPhotoItem.alt = "Adrian the mad scientist!";
+        newPhotoItem.classList.add("photo");
+        newPhotoItem.style.opacity = 0;
 
-    
-});
+        photoContainer.appendChild(newPhotoItem);
 
+        setTimeout(() => {
+            newPhotoItem.style.opacity = 1;
+            index++;
+            imagesFadeInandOut();
+        }, delayBetweenImages);
+    }
+}
+imagesFadeInandOut();  
 
 
 
@@ -58,8 +67,8 @@ photos.forEach(function(photos) {
 });
 
 
-const togglePhotosButton = document.getElementById("togglePhotosButton");
-const photo = document.querySelectorAll("#photoContainerimg");
+const togglePhotosButton = document.getElementById("#togglePhotosButton");
+const photosContainerimg = document.querySelectorAll("#photoContainerimg");
 
 const photosHidden = false;
 togglePhotosButton.addEventListener("click", function() {

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Catalog</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script defer src="index.js"></script>
 </head>
 <body>
-    <section>
     <header>Les Gallery</header><br><br>
     <section id="photoContainer"></section>
-    <section id="photoForm"></section>
+        <section id="photoForm">
     <div>
         <form id="addPhotoForm">
             <label for="photoTitle">Title:</label>
@@ -20,6 +20,7 @@
             <input type="text" id="photoURL" name="photoURLName" required>
             
             <button id="addPhotoButton" type="submit">Add Photo</button>
+            <button id="togglePhotosButton">Toggle Photos</button>
         </form>
     </div>
 
@@ -32,10 +33,9 @@
 <template id="photoTemplate">
     <div class="photo">
         <img src="" alt="Photo">
-        <P class="caption"></P>
+        <p class="caption"></p>
     </div>
 </template>
-
 </section>
 </body>
 </html>

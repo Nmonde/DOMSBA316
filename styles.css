@@ -12,7 +12,15 @@
     margin-top: 10px;
 }
 
-/* #photoContainer img {
-    max-width: 10%;
+#photoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#photoContainerimg {
+    max-width: 50%;
     height: auto;
-    } */
+    opacity: 0;
+    transition: opacity 1s;
+}
