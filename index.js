@@ -1,75 +1,47 @@
 const photoContainerQuery = document.querySelector("#photoContainer");
-const photos = photoContainer.querySelectorAll("img");
-
-
-function fadeInImages(images, delay) {
-    let index = 0;
-
-function showNextImage() {
-    if (index < images.length) {
-        images[index].style.opacity = 1;
-        index++;
-        setTimeout(showNextImage, delay);
-    }
-}
-showNextImage();
-}
-photos.forEach(function(photos) {
-    photos.style.opacity = 0;
-});
-
-fadeInImages(photos, 1000);
-
-const photoContainer = document.querySelector("photoContainer");
-const delayBetweenImages = 1000;
 const imagesSources = ["DOM316Images/Adrian1.jpg, DOM316Images/Adrian2.jpg, DOM316Images/Adrian3.jpg"];
-let index= 0;
+const photoTemplate = document.getElementById("photoTemplate");
 
-function imagesFadeInandOut() {
-    if (index < imagesSources.length) {
-        const newPhotoItem = document.createElement("img");
-        newPhotoItem.src = imagesSources[index];
-        newPhotoItem.alt = "Adrian the mad scientist!";
-        newPhotoItem.classList.add("photo");
-        newPhotoItem.style.opacity = 0;
+function imagesFadeInandOut(imagesSource, caption) {
+    const photoFragment = document.importNode(photoTemplate.content,true);
+    const newPhotoItem = photoFragment.querySelector("photo");
+    const photoImage = newPhotoItem.querySelector("img");
 
-        photoContainer.appendChild(newPhotoItem);
+photoImage.src = imagesSource;
+photoImage.alt = caption;
 
-        setTimeout(() => {
-            newPhotoItem.style.opacity = 1;
-            index++;
-            imagesFadeInandOut();
-        }, delayBetweenImages);
-    }
-}
-imagesFadeInandOut();  
+newPhotoItem.querySelector(".caption").textContent = caption;
+newPhotoItem.style.opacity = 0;
+photoContainerQuery.appendChild(newPhotoItem);
 
+setTimeout(() => {
+    newPhotoItem.style.opacity= 1;
+}, 1000)
 
-
-
-const addPhotoForm = document.getElementById("addPhotoForm");
-const thankYouMessage = document.getElementById("thankYouMessage");
-const submissionCount= 0;
-const maxSubmissions= 3;
-addPhotoForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    submissionCount++;
-    if (submissionCount === maxSubmissions) {
-    addPhotoForm.style.display = "none";
-    thankYouMessage.style.display = "block";
-    }
-});
+imagesSources.forEach(function(imagesSource, index) {
+    imagesFadeInandOut(imagesSource, `Adrian the mad scientist ${index+1}!`);
+    });
 
 
-photos.forEach(function(photos) {
-    console.log(photos.src);
+    const addPhotoForm = Document.getElementById("addPhotoForm");
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    let submissionCount =0;
+    const maxSubmissions =3;
 
-});
+    addPhotoForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        submissionCount++;
+
+        if (submissionCount === maxSubmissions) {
+            addPhotoForm.style.display = "none";
+            thankYouMessage.style.display = "block";
+        }
+    });
+
 
 
 const togglePhotosButton = document.getElementById("#togglePhotosButton");
-const photosContainerimg = document.querySelectorAll("#photoContainerimg");
-
+const photos = photoContainerQuery.querySelectorAll("img");
 const photosHidden = false;
 togglePhotosButton.addEventListener("click", function() {
     photosHidden = !photosHidden;
